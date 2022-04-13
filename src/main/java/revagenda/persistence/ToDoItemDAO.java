@@ -30,7 +30,7 @@ public class ToDoItemDAO implements CRUDInterface<ToDoItemModel>{
     //Group C
     @Override
     public void update(ToDoItemModel model) {
-        String sql = "UPDATE to_do_items SET userId = ?, task = ?, date = ?, completed = ?  WHERE itemID = ?";
+        String sql = "UPDATE to_do_items SET user_id = ?, task = ?, due = ?, completed = ?  WHERE item_id = ?";
         try {
             PreparedStatement pstmt = ConnectionManager.getConnection().prepareStatement(sql);
             pstmt.setInt(1, model.getUserId());
