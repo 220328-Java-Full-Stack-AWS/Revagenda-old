@@ -14,8 +14,13 @@ public class Main {
 
         //Connection conn = ConnectionManager.getConnection();
         TestTableDAO dao = new TestTableDAO();
+        ToDoItemDAO toDao = new ToDoItemDAO();
         TestTableModel m = dao.read(1);
+        ToDoItemModel mm = toDao.read(1);
+
         System.out.println("Model: " + m.getId() + ", " + m.getString());
+        System.out.println("ToDoItemModel: " + mm.getItemId() + ", " + mm.getTask() +", "+ mm.getDate() + ", " + mm.isCompleted() + ", " + mm.getUserId());
+
 
         List<TestTableModel> list = dao.getAll();
         for (TestTableModel temp : list) {
@@ -29,10 +34,6 @@ public class Main {
         TestTableModel m2 = dao.read(1);
         System.out.println("Updated model: " + m2.getId() + ", " + m2.getString());
 
-        ToDoItemDAO test = new ToDoItemDAO();
-        ToDoItemModel model = new ToDoItemModel(1, "Learn to code better", "04/13/2022", false, 1);
-
-        test.update(model);
 
         ConnectionManager.close();
 
@@ -73,3 +74,4 @@ public class Main {
 
 
          */
+
