@@ -2,7 +2,9 @@ package revagenda;
 
 
 import revagenda.models.TestTableModel;
+import revagenda.models.ToDoItemModel;
 import revagenda.persistence.TestTableDAO;
+import revagenda.persistence.ToDoItemDAO;
 
 import java.util.List;
 
@@ -26,6 +28,11 @@ public class Main {
 
         TestTableModel m2 = dao.read(1);
         System.out.println("Updated model: " + m2.getId() + ", " + m2.getString());
+
+        ToDoItemDAO test = new ToDoItemDAO();
+        ToDoItemModel model = new ToDoItemModel(1, "Learn to code better", "04/13/2022", false, 1);
+
+        test.update(model);
 
         ConnectionManager.close();
 
