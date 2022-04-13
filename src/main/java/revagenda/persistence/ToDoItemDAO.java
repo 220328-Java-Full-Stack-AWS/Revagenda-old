@@ -55,7 +55,7 @@ public class ToDoItemDAO implements CRUDInterface<ToDoItemModel>{
     public List<ToDoItemModel> getAll() {
         List<ToDoItemModel> list = new LinkedList<>();
         try {
-            String SQL = "SELECT * FROM test_table";
+            String SQL = "SELECT * FROM to_do_items";
             Connection conn = ConnectionManager.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(SQL);
 
@@ -64,11 +64,11 @@ public class ToDoItemDAO implements CRUDInterface<ToDoItemModel>{
 
             while(rs.next()) {
                 ToDoItemModel model = new ToDoItemModel();
-                model.setItemId(rs.getInt("itemId"));
+                model.setItemId(rs.getInt("item_id"));
                 model.setTask(rs.getString("task"));
-                model.setDate(rs.getString("date"));
+                model.setDate(rs.getString("due"));
                 model.setCompleted(rs.getBoolean("completed"));
-                model.setUserId(rs.getInt("userId"));
+                model.setUserId(rs.getInt("user_id"));
                 list.add(model);
             }
 
