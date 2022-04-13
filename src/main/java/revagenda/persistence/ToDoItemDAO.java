@@ -1,7 +1,11 @@
 package revagenda.persistence;
 
+import revagenda.ConnectionManager;
 import revagenda.models.ToDoItemModel;
 
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 public class ToDoItemDAO implements CRUDInterface<ToDoItemModel>{
@@ -30,10 +34,31 @@ public class ToDoItemDAO implements CRUDInterface<ToDoItemModel>{
 
     }
 
-    //Group E
+    /**
+     * Deletes an item from the to_do_items table
+     * Group E
+     * @author Steven Dowd
+     * @author Randall Hale
+     * @author Jarod Heng
+     * @author Tony Henderson
+     * @param model
+     */
     @Override
     public void delete(ToDoItemModel model) {
 
+        int id = model.getItemId();
+        String sql = "delete from to_do_items where id = ?";
+
+        try {
+            PreparedStatement pstmt = ConnectionManager.getConnection().prepareStatement(sql);
+
+            pstmt.setInt(1, id);
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     //Group F
