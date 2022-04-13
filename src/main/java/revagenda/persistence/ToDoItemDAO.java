@@ -41,7 +41,7 @@ public class ToDoItemDAO implements CRUDInterface<ToDoItemModel>{
      * @author Randall Hale
      * @author Jarod Heng
      * @author Tony Henderson
-     * @param model
+     * @param model The item to delete from to_do_items table
      */
     @Override
     public void delete(ToDoItemModel model) {
