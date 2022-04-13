@@ -23,7 +23,7 @@ public class TestTableDAO implements CRUDInterface<TestTableModel>{
      * @param model - The POJO to be inserted into the database. Pojo must extend the Model abstract class.
      */
     @Override
-    public void create(TestTableModel model) {
+    public TestTableModel create(TestTableModel model) {
         String sql = "INSERT INTO test_table (id, string) VALUES (?, ?)";
         try {
             PreparedStatement pstmt = ConnectionManager.getConnection().prepareStatement(sql);
@@ -34,6 +34,8 @@ public class TestTableDAO implements CRUDInterface<TestTableModel>{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        return null;
     }
 
     /**

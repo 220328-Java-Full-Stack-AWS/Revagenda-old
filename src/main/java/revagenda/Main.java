@@ -6,38 +6,49 @@ import revagenda.models.ToDoItemModel;
 import revagenda.persistence.TestTableDAO;
 import revagenda.persistence.ToDoItemDAO;
 
+import java.sql.Connection;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        ToDoItemDAO dao = new ToDoItemDAO();
+        ToDoItemModel toDoItem = new ToDoItemModel("Remember those cool associates you had in your cohort last year", "2023-10-10", false, 1);
+
+        //Group A - Nice!
+        toDoItem = dao.create(toDoItem);
+        System.out.println("Create test: " + toDoItem);
+
+        //Group B - Great job!
+        ToDoItemModel queryModel = dao.read(toDoItem.getItemId());
+        System.out.println("Read test: " + queryModel);
+
+        //Group C - Excellent!
+        toDoItem.setTask("Get oil changed");
+        toDoItem.setDate("2022-05-01");
+        toDoItem.setCompleted(true);
+        toDoItem.setUserId(2);
+        dao.update(toDoItem);
+        queryModel = dao.read(toDoItem.getItemId());
+        System.out.println("Read test: " + queryModel);
+
+        //Group D - Awesome!
+        dao.delete(queryModel.getItemId());
+        ToDoItemModel empty = dao.read(queryModel.getItemId());
+        System.out.println("Delete by ID test: " + empty);
+
+        //Group E - Fantastic!
+        toDoItem = dao.create(toDoItem);
+        dao.delete(toDoItem);
+        empty = dao.read(toDoItem.getItemId());
+        System.out.println("Delete by model test: " + empty);
 
 
-        //Connection conn = ConnectionManager.getConnection();
-        TestTableDAO dao = new TestTableDAO();
-        ToDoItemDAO toDao = new ToDoItemDAO();
-        TestTableModel m = dao.read(1);
-        ToDoItemModel mm = toDao.read(1);
-
-        System.out.println("Model: " + m.getId() + ", " + m.getString());
-        System.out.println("ToDoItemModel: " + mm.getItemId() + ", " + mm.getTask() +", "+ mm.getDate() + ", " + mm.isCompleted() + ", " + mm.getUserId());
-
-
-        List<TestTableModel> list = dao.getAll();
-        for (TestTableModel temp : list) {
-            System.out.println("Model: " + temp.getId() + ", " + temp.getString());
-        }
-
-        m.setString("I'm going home now.");
-
-        dao.update(m);
-
-        TestTableModel m2 = dao.read(1);
-        System.out.println("Updated model: " + m2.getId() + ", " + m2.getString());
+        //Group F - Amazing!
+        List<ToDoItemModel> list = dao.getAll();
+        System.out.println(list);
 
 
         ConnectionManager.close();
-
-
     }
 }
         /*

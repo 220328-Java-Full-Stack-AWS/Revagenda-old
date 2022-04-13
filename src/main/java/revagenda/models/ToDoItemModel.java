@@ -28,6 +28,13 @@ public class ToDoItemModel extends Model{
         this.userId = userId;
     }
 
+    public ToDoItemModel(String task, String date, boolean completed, int userId) {
+        this.task = task;
+        this.date = date;
+        this.completed = completed;
+        this.userId = userId;
+    }
+
     public int getItemId() {
         return itemId;
     }
@@ -66,5 +73,10 @@ public class ToDoItemModel extends Model{
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    @Override
+    public String toString() {
+        return itemId + " - " + task  + " - " + date  + " - " + completed  + " - " + userId + "\n";
     }
 }
