@@ -2,7 +2,9 @@ package revagenda;
 
 
 import revagenda.models.TestTableModel;
+import revagenda.models.ToDoItemModel;
 import revagenda.persistence.TestTableDAO;
+import revagenda.persistence.ToDoItemDAO;
 
 import java.util.List;
 
@@ -12,8 +14,13 @@ public class Main {
 
         //Connection conn = ConnectionManager.getConnection();
         TestTableDAO dao = new TestTableDAO();
+        ToDoItemDAO toDao = new ToDoItemDAO();
         TestTableModel m = dao.read(1);
+        ToDoItemModel mm = toDao.read(1);
+
         System.out.println("Model: " + m.getId() + ", " + m.getString());
+        System.out.println("ToDoItemModel: " + mm.getItemId() + ", " + mm.getTask() +", "+ mm.getDate() + ", " + mm.isCompleted() + ", " + mm.getUserId());
+
 
         List<TestTableModel> list = dao.getAll();
         for (TestTableModel temp : list) {
