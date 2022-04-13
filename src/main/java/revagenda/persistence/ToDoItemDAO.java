@@ -1,11 +1,13 @@
 package revagenda.persistence;
 
 import revagenda.ConnectionManager;
+import revagenda.models.TestTableModel;
 import revagenda.models.ToDoItemModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.LinkedList;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
@@ -93,8 +95,39 @@ public class ToDoItemDAO implements CRUDInterface<ToDoItemModel>{
     }
 
     //Group F
+    /**
+    @author Chenxi
+    @author Terrell
+    @author Mohammad
+     @author Kenneth
+     */
+
     @Override
     public List<ToDoItemModel> getAll() {
-        return null;
+        List<ToDoItemModel> list = new LinkedList<>();
+        try {
+            String SQL = "SELECT * FROM to_do_items";
+            Connection conn = ConnectionManager.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+
+            ResultSet rs = pstmt.executeQuery();
+
+
+            while(rs.next()) {
+                ToDoItemModel model = new ToDoItemModel();
+                model.setItemId(rs.getInt("item_id"));
+                model.setTask(rs.getString("task"));
+                model.setDate(rs.getString("due"));
+                model.setCompleted(rs.getBoolean("completed"));
+                model.setUserId(rs.getInt("user_id"));
+                list.add(model);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
     }
 }
+

@@ -34,6 +34,12 @@ public class Main {
         TestTableModel m2 = dao.read(1);
         System.out.println("Updated model: " + m2.getId() + ", " + m2.getString());
 
+        ToDoItemDAO toDoItemDAO = new ToDoItemDAO();
+
+        List<ToDoItemModel> list1 = toDoItemDAO.getAll();
+        for(ToDoItemModel temp: list1){
+            System.out.println(temp.getItemId());
+        }
         ConnectionManager.close();
 
 
@@ -73,3 +79,4 @@ public class Main {
 
 
          */
+
