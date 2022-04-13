@@ -45,7 +45,6 @@ public class ToDoItemDAO implements CRUDInterface<ToDoItemModel>{
      */
     @Override
     public void delete(ToDoItemModel model) {
-
         int id = model.getItemId();
         String sql = "delete from to_do_items where id = ?";
 
