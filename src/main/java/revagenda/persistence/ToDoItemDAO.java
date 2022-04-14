@@ -24,7 +24,6 @@ public class ToDoItemDAO implements CRUDInterface<ToDoItemModel> {
             if(keys.next()) {
                 int key = keys.getInt(1);
                 model.setItemId(key);
-
             }
         } catch (SQLException e) {
             e.printStackTrace();

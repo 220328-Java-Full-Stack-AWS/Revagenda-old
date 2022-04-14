@@ -1,13 +1,10 @@
 /*
  * DML - insert test data
  */
-insert into users (first_name, last_name, username, password, email) values ('Kyle', 'Plummer', 'kplummer', 'P4ssw0rd!', 'kyle.plummer@revature.com');
 
+INSERT INTO users (first_name, last_name, username, password, email) VALUES ('Kyle', 'Plummer', 'kplummer', 'P4ssw0rd!', 'kyle.plummer@revature.com');
+INSERT INTO users (first_name, last_name, username, password, email) VALUES ('Stan', 'Savelev', 'ssavelev', 'P4ssw0rd!', 'stan.savelev@revature.net');
 
-insert into to_do_items (task, due, completed, user_id) values ('bring car to jiffylube', '2022-05-01', false, 1);
-insert into to_do_items (task, due, completed, user_id) values ('get car inspected', '2022-05-01', false, 1);
-insert into to_do_items (task, due, completed, user_id) values ('pay rent', '2022-04-01', true, 1);
-
-
-
-
+INSERT INTO to_do_items (task, due, completed, user_id) VALUES ('bring car to jiffylube', '2022-05-01', false, 1);
+INSERT INTO to_do_items (task, due, completed, user_id) VALUES ('get car inspected', '2022-05-01', false, 1);
+INSERT INTO to_do_items (task, due, completed, user_id) VALUES ('pay rent', '2022-04-01', true, 1);

@@ -29,7 +29,7 @@ public class Main {
         toDoItem.setUserId(2);
         dao.update(toDoItem);
         queryModel = dao.read(toDoItem.getItemId());
-        System.out.println("Read test: " + queryModel);
+        System.out.println("Update test: " + queryModel);
 
         //Group D - Awesome!
         dao.delete(queryModel.getItemId());
