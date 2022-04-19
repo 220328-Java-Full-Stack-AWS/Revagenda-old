@@ -63,8 +63,9 @@ public class ConnectionManager {
          */
 
 
-        try {
 
+        try {
+            Class.forName("org.postgresql.Driver");
             //New method grabbing the properties from the JAR classpath
             Properties props = new Properties();
             ClassLoader loader = Thread.currentThread().getContextClassLoader();
@@ -97,8 +98,8 @@ public class ConnectionManager {
 //            }
 
 
-            System.out.println("Connection String: " + connectionString);
-        } catch (IOException | SQLException e) {
+            //System.out.println("Connection String: " + connectionString);
+        } catch (IOException | SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 

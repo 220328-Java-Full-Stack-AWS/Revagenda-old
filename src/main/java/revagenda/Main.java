@@ -1,13 +1,11 @@
 package revagenda;
 
 
-import revagenda.models.TestTableModel;
 import revagenda.models.ToDoItemModel;
-import revagenda.persistence.TestTableDAO;
 import revagenda.persistence.ToDoItemDAO;
 
-import java.sql.Connection;
 import java.util.List;
+import java.util.UUID;
 
 public class Main {
     public static void main(String[] args) {
@@ -43,9 +41,21 @@ public class Main {
         System.out.println("Delete by model test: " + empty);
 
 
+
+
+
+
         //Group F - Amazing!
         List<ToDoItemModel> list = dao.getAll();
         System.out.println(list);
+
+
+        UUID myUuid = UUID.randomUUID();
+
+
+
+
+
 
 
         ConnectionManager.close();
