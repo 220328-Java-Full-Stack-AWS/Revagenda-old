@@ -17,7 +17,8 @@ public class HealthServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setStatus(200);
-        resp.getWriter().print("Health Check Passed!");
-        System.out.println("Health Check Passed!");
+        String pass = "Health check passed!";
+        resp.getWriter().print(pass);
+        System.out.println(pass);
     }
 }

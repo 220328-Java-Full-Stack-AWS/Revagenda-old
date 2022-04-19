@@ -26,5 +26,15 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+    <servlet-mapping>
+        <servlet-name>toDoItemServlet</servlet-name>
+        <url-pattern>/ToDoItem</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>toDoItemServlet</servlet-name>
+        <servlet-class>revagenda.servlets.ToDoItemServlet</servlet-class>
+    </servlet>
+
 
 </web-app>

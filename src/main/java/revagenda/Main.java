@@ -3,6 +3,7 @@ package revagenda;
 
 import revagenda.models.ToDoItemModel;
 import revagenda.persistence.ToDoItemDAO;
+import revagenda.services.ToDoItemService;
 
 import java.util.List;
 import java.util.UUID;
@@ -40,6 +41,7 @@ public class Main {
         empty = dao.read(toDoItem.getItemId());
         System.out.println("Delete by model test: " + empty);
 
+        ToDoItemService service = new ToDoItemService();
 
 
 
@@ -51,10 +53,6 @@ public class Main {
 
 
         UUID myUuid = UUID.randomUUID();
-
-
-
-
 
 
 
