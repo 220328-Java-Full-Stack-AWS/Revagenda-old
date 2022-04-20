@@ -1,4 +1,7 @@
 package revagenda.models;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /*
 create table if not exists to_do_items (
 	item_id SERIAL,
@@ -10,6 +13,7 @@ create table if not exists to_do_items (
 	constraint fk_to_do_items_users foreign key (user_id) references users (user_id)
 );
  */
+@JsonIgnoreProperties
 public class ToDoItemModel extends Model{
     private int itemId;
     private String task;

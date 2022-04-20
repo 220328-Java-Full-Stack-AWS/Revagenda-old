@@ -31,7 +31,7 @@ public class ToDoItemServlet extends HttpServlet {
          */
         //query param - good for requests only, because we don't send URI back in the response
 
-        System.out.println("query param: " + req.getParameter("item_id"));
+        //System.out.println("query param: " + req.getParameter("item_id"));
 
         //get from headers - good for request and response, as both have a set of key/value pairs that are called "headers"
         ;
@@ -50,11 +50,14 @@ public class ToDoItemServlet extends HttpServlet {
         resp.setStatus(200);
     }
 
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //we will add more funcitonality later, but for now this is how we will de-serialize JSON into a model
         //ObjectMapper mapper = new ObjectMapper();
-        ToDoItemModel model = mapper.readValue(req.getReader().toString(), ToDoItemModel.class);
+        //System.out.println(req.getReader().read());
+        //BufferedReader br = new BufferedReader(new InputStreamReader(req.getInputStream()));
+        ToDoItemModel model =  mapper.readValue(req.getInputStream(), ToDoItemModel.class);
         model = service.create(model);
         String json = mapper.writeValueAsString(model);
         resp.setStatus(201); //status code 201: created says that we have successfully persisted this object
