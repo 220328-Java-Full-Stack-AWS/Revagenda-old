@@ -41,6 +41,7 @@ public class ToDoItemServlet extends HttpServlet {
 
         ToDoItemModel model = service.read(Integer.parseInt(req.getHeader("item_id")));
 
+
         //now we want to turn model into JSON to transmit in the response body
         //ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(model);
@@ -54,15 +55,24 @@ public class ToDoItemServlet extends HttpServlet {
         //we will add more funcitonality later, but for now this is how we will de-serialize JSON into a model
         //ObjectMapper mapper = new ObjectMapper();
         ToDoItemModel model = mapper.readValue(req.getReader().toString(), ToDoItemModel.class);
+        model = service.create(model);
+        String json = mapper.writeValueAsString(model);
+        resp.setStatus(201); //status code 201: created says that we have successfully persisted this object
+        resp.getWriter().print(json);
     }
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPut(req, resp);
+        ToDoItemModel model = mapper.readValue(req.getReader().toString(), ToDoItemModel.class);
+        service.update(model);
+        String json = mapper.writeValueAsString(model);
+        resp.setStatus(201); //status code 201: created says that we have successfully persisted this object
+        resp.getWriter().print(json);
     }
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doDelete(req, resp);
+        service.delete(Integer.parseInt(req.getHeader("item_id")));
+        resp.setStatus(200);
     }
 }
