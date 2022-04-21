@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoItem Form</title>
+</head>
+
+<body>
+
+    <label>Enter new task:</label>
+    <input type="text" id="task" name="task">
+    <br>
+    <label>Enter due date: (YYYY-MM-DD)</label>
+    <input type="text" id="date" name="date">
+    <br>
+    <button type="submit" onclick="submitForm()">Submit item</button>
+
+
+
+    <script>
+        // function test(e) {
+        //     //e.preventDefault();
+        //     console.log(document.getElementById("task").value);
+        // }
+
+
+        async function submitForm() {
+
+
+            let formData =
+            {
+                task: document.getElementById("task").value,
+                date: document.getElementById("date").value,
+                completed: false,
+                userId: 1
+            }
+
+
+            let response = await fetch(
+                "http://localhost:8080/Revagenda/ToDoItem",
+                {
+                    method: "POST",
+                    headers:
+                    {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(formData)
+
+                }
+            );
+        }
+    </script>
+</body>
+
+</html>

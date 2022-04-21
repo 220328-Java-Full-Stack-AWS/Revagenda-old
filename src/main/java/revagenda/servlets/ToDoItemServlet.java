@@ -26,21 +26,18 @@ public class ToDoItemServlet extends HttpServlet {
         /*
         there are several ways to get data out of the request
         located in the URL - this is a query parameter in the URL there are key/value pairs something.com/something?key=value&key=value&item_id=1
+        Also located in the URL - Path parameters. We won't be seeing this until we start working with spring controllers
         located in header - key value pairs from the header of the request
-        located in the body -
+        located in the body - JSON resource representation
+
+        query param - good for requests only, because we don't send URI back in the response.
+        This is where we would find HTML form data
+        System.out.println("query param: " + req.getParameter("item_id"));
+        get from headers - good for request and response, as both have a set of key/value pairs that are called "headers"
+        get from request body - also good for req and response, even get requests which do not traditionally have a body
          */
-        //query param - good for requests only, because we don't send URI back in the response
-
-        //System.out.println("query param: " + req.getParameter("item_id"));
-
-        //get from headers - good for request and response, as both have a set of key/value pairs that are called "headers"
-        ;
-
-        //get from request body - also good for req and response, even get requests which do not traditionally have a body
-
 
         ToDoItemModel model = service.read(Integer.parseInt(req.getHeader("item_id")));
-
 
         //now we want to turn model into JSON to transmit in the response body
         //ObjectMapper mapper = new ObjectMapper();
@@ -53,6 +50,7 @@ public class ToDoItemServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("ToDoItem POST");
         //we will add more funcitonality later, but for now this is how we will de-serialize JSON into a model
         //ObjectMapper mapper = new ObjectMapper();
         //System.out.println(req.getReader().read());

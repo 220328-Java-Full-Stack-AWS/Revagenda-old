@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View</title>
+</head>
+
+<body>
+    <p id="view"></p>
+
+
+
+
+
+
+    <script>
+        window.onload = getItem(1);
+        //we need a function to reach out and get data from our API
+        async function getItem(id) {
+            //this is the equivelant to System.out.println();
+            console.log("test");
+            let response = await fetch(
+                "http://localhost:8080/Revagenda/ToDoItem",
+                {
+                    method: "GET",
+                    headers:
+                    {
+                        "Content-Type": "application/json",
+                        "item_id": id
+                    }
+                }
+            );
+
+
+            let json = await response.json();
+            console.log(json);
+
+            let view = document.getElementById("view");
+            let content = "<h1>ToDoItem: #";
+            content += json.itemId;
+            content += "</h1> <br> Task: ";
+            content += json.task;
+            content += "<br> Due: ";
+            content += json.date;
+
+            view.innerHTML += content;
+
+        }
+    </script>
+</body>
+
+</html>
