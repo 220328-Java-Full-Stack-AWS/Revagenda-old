@@ -64,7 +64,7 @@ public class ToDoItemServlet extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ToDoItemModel model = mapper.readValue(req.getReader().toString(), ToDoItemModel.class);
+        ToDoItemModel model = mapper.readValue(req.getInputStream(), ToDoItemModel.class);
         service.update(model);
         String json = mapper.writeValueAsString(model);
         resp.setStatus(201); //status code 201: created says that we have successfully persisted this object
